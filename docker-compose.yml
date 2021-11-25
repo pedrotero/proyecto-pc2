@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres
+    container_name: pgdb
+    ports:
+      - 5432:5432
+    environment: 
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    restart: unless-stopped
+    volumes:
+      - ./dellstore2-normal-1.0.sql:/docker-entrypoint-initdb.d/dellstore2-normal-1.0.sql
+
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  jup:
+    container_name: jup
+    image: potera/jupyter
+    volumes:
+      - ./work/:/home/jovyan/work
+    entrypoint: ./work/entrypoint.sh
+    depends_on:
+      db:
+        condition: service_healthy
+  dash:
+    image: potera/dockerdash
+    ports:
+      - 8000:8000
+    container_name: dash
+    depends_on:
+      - jup
+    volumes:
+      - ./work/:/app
+    command: python /app/app.py
