@@ -11,20 +11,13 @@ services:
     restart: unless-stopped
     volumes:
       - ./dellstore2-normal-1.0.sql:/docker-entrypoint-initdb.d/dellstore2-normal-1.0.sql
-
-    healthcheck:
-      test: pg_isready -U postgres
-      interval: 10s
-      timeout: 5s
-      retries: 5
   jup:
     container_name: jup
     image: poteroa/jupyter:jupyter
+    restart: on-failure
     volumes:
       - ./work/:/home/jovyan/work
     entrypoint: ["ipython", "-c", "'%run work/runnb.py'"]
-    depends_on:
-      - db
   dash:
     image: poteroa/dockerdash:dash
     restart: unless-stopped
