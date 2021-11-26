@@ -6,7 +6,7 @@ from dash import html
 import plotly.express as px
 from dash.dependencies import Input, Output
 
-time.sleep(30)
+time.sleep(60)
 
 app = dash.Dash(__name__)
 
