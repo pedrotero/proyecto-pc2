@@ -22,7 +22,7 @@ services:
     image: poteroa/jupyter:jupyter
     volumes:
       - ./work/:/home/jovyan/work
-    entrypoint: work/entrypoint.sh
+    entrypoint: ["ipython", "-c", "'%run runnb.py'"]
     depends_on:
       - db
   dash:
