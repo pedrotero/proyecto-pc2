@@ -35,4 +35,4 @@ services:
       - jup
     volumes:
       - ./work/:/app
-    command: python /app/app.py
+    command: sleep 20 && python /app/app.py
