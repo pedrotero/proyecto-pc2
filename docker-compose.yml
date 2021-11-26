@@ -18,7 +18,7 @@ services:
       retries: 5
   jup:
     container_name: jup
-    image: potera/jupyter
+    image: poteroa/jupyter:jupyter
     volumes:
       - ./work/:/home/jovyan/work
     entrypoint: ./work/entrypoint.sh
@@ -26,7 +26,7 @@ services:
       db:
         condition: service_healthy
   dash:
-    image: potera/dockerdash
+    image: poteroa/dockerdash:jupyter
     ports:
       - 8000:8000
     container_name: dash
