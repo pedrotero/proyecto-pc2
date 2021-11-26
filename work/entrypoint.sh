@@ -1,3 +1,3 @@
 #!/bin/bash
-cd work
-ipython -c "%run runnb.py"
+sudo cd work
+sudo ipython -c "%run runnb.py"
