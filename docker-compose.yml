@@ -24,8 +24,7 @@ services:
       - ./work/:/home/jovyan/work
     entrypoint: ./work/entrypoint.sh
     depends_on:
-      db:
-        condition: service_healthy
+      - db
   dash:
     image: poteroa/dockerdash:jupyter
     restart: unless-stopped
