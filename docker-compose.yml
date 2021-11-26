@@ -26,7 +26,7 @@ services:
     depends_on:
       - db
   dash:
-    image: poteroa/dockerdash:jupyter
+    image: poteroa/dockerdash:dash
     restart: unless-stopped
     ports:
       - 8000:8000
