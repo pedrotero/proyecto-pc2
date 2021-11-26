@@ -27,6 +27,7 @@ services:
         condition: service_healthy
   dash:
     image: poteroa/dockerdash:jupyter
+    restart: unless-stopped
     ports:
       - 8000:8000
     container_name: dash
