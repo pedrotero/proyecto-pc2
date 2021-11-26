@@ -1,11 +1,12 @@
 import dash
+import time
 import pandas as pd
 from dash import dcc
 from dash import html
 import plotly.express as px
 from dash.dependencies import Input, Output
 
-
+time.sleep(30)
 
 app = dash.Dash(__name__)
 
